@@ -11,4 +11,4 @@ before_install:
   - export PATH=$PATH:$PWD/base/bin # Add directory with all installed binaries to PATH
   - luarocks install busted
 
-scripe: busted test
+script: busted test
