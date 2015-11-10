@@ -1,0 +1,12 @@
+language: c
+
+env:
+  - LUA='Lua 5.1'
+
+install:
+  - sudo apt-get update -qq
+  - sudo luarocks install luasec
+  - sudo luarocks install moonscript
+  - sudo luarocks make busted-scm-0.rockspec
+
+script: busted test
