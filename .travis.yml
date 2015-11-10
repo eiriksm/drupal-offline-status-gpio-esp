@@ -1,12 +1,14 @@
-language: c
+language: python
+
+sudo: false
 
 env:
-  - LUA='Lua 5.1'
+  - LUA="lua=5.1"
 
-install:
-  - sudo apt-get update -qq
-  - sudo luarocks install luasec
-  - sudo luarocks install moonscript
-  - sudo luarocks make busted-scm-0.rockspec
+before_install:
+  - pip install hererocks
+  - hererocks base -r^ --$LUA
+  - export PATH=$PATH:$PWD/base/bin # Add directory with all installed binaries to PATH
+  - luarocks install busted
 
-script: busted test
+scripe: busted test
