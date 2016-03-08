@@ -10,5 +10,9 @@ before_install:
   - hererocks base -r^ --$LUA
   - export PATH=$PATH:$PWD/base/bin # Add directory with all installed binaries to PATH
   - luarocks install busted
+  - luarocks install luacov-coveralls
 
 script: busted test
+after_script:
+  - busted -c test
+  - luacov-coveralls
